@@ -1,0 +1,71 @@
+\documentclass[fleqn]{article}
+\setlength{\parskip}{\baselineskip}%
+\setlength{\parindent}{0pt}%
+
+\usepackage[table]{xcolor}
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\begin{document}
+\setlength{\mathindent}{0pt}
+\section*{Number Systems \& Base Conversions}
+hexadecimal shortens binary
+
+Three number systems:
+\begin{itemize}
+    \item Binary
+    \item Decimal (10)
+    \item Hexadecimal (base 16)
+\end{itemize}
+
+\section*{Decimal}
+numbers are sum of digits, each multiplied by a power of 10
+\[735 = 700 + 30 + 5\]
+\[700 = 7 \times 10^{2}\]
+Index 2, 1, 0
+
+\section*{Hexadecimal}
+16 digits: 0-9, A-F
+
+In base 10, A = 1010 (10), B = 1011 (11), ..., F=1111 (15)
+
+Split into two sections, each with powers of 2
+
+Each digit contains 4 bits
+
+$ 15 _{10}  $ means 15 in decimal
+
+\section*{Convert Decimal to Binary}
+See if power numbers (64, 32, 16, 8) fit in 35?
+
+32 $\leq$ 35, so 1 under 32, then $35-32=3$
+
+\section*{Hex to Binary}
+Split into four digit segments
+
+1111=0xf
+
+\section*{Binary to Hex}
+Conversion same except split into separate charts of 4 digits
+
+If over ten but $<$ 16, convert to letter
+
+Concat, dont sum separate charts
+
+11011001=0xD9
+
+0x prefix represents a hexadecimal number
+
+Also, 0xD9=D9h, h suffix also means hexadecimal
+
+\section*{Hex to Binary}
+Split each digit into chart of 4 binary digits
+
+Only need 4 because hex only goes to 15 anyways
+
+Also just concat at the end
+\end{document}
