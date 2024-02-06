@@ -1,0 +1,100 @@
+= Binary Arithmetic
+#heading(level: 2, "Binary Addition")
+\
+Rules:
+- 0 + 0 = 0
+- 1 + 0 = 1
+- 0 + 1 = 1
+- 1 + 1 = 10 (0 with carry 1)
+- 1 + 1 + 1 = 11 (1 with carry 1)
+\
+Carrying just like in decimal:
+
+Ignore if overflows
+\
+\
+$display(
+0000 " " 0011 = 3_10\
++\
+0000 " " 0101 = 5_10\
+=\
+0000 " " 1000 = 8_10
+)$
+\
+\
+Could also convert from binary to decimal then add:
+\
+\
+$display(
+0111 " " 1000 = 64 + 32 + 16 + 8 = 120_10\
++\
+0101 " " 0101 = 64 + 16 + 4 + 1 = 85_10\
+=\
+1100 " " 1101 = 128 + 64 + 8 + 4 + 1 = 205_10\
+)$
+#heading(level: 2, "Unsigned vs Signed")
+\
+Unsigned numbers always positive or zero
+\
+\
+Leftmost bit in signed number is sign; 0 = positive, 1 = negative
+\
+1000 0000 = -128
+\
+0111 1111 = +127
+\
+\
+#heading(level: 2, "Binary Subtraction (Two's Complement Notation)")
+\
+Steps:
++ Take the 2nd number, convert with 2's complement
++ Add 1st number to 2's complement of 2nd
+
+$=01-10$
+
+$=10_10-13_10$
+
+$=10_10+(-13_10)$
+\
+\
+#heading(level: 2, "How to take 2's Complement")
+\
+Steps:
++ Flip every bit to its opposite
++ Add 1 to the binary
+
+$0011$ $0011$
+
+1. $arrow$ $1100$ $1100$
+
+2. $arrow$ $1100$ $1101$
+
+#heading(level: 2, "Convert 2's Complement to Decimal")
+\
+Leftmost bit is -128 (1) or +127 (0)
+
+Add the same way:
+
+$arrow$ $1100$ $1101$
+
+$arrow$ $-128 + 64 + 8 + 4 + 1$
+
+$ =-51_10$
+
+#heading(level: 2, "Subtraction")
+
+#heading(level: 3, "Example 1:")
+\
+$0000$ $1011 - 0000$ $0010$
+
++ Second to complement: $0000$ $0010$ $arrow$ $1111$ $1101$
++ Add to first: $0000$ $1011 + 1111$ $1101$
+$ = 0000$  $1001$
+
+#heading(level: 3, "Example 2:")
+\
+$0000$ $1100 - 0000$ $1001$
+
++ Second to complement: $0000$ $1001 arrow$ $1111$ $0111$
++ Add to first: $0000$ $1100 + 1111$ $0111$
+$ = 0000$ $0011$
