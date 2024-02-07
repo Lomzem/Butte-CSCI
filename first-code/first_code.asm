@@ -20,4 +20,4 @@ dec ebx; Decrement ebx by 1
 ; Needed to exit the program correctly
 mov eax, 1; sys_exit system call number
 mov ebx, 0; return 0 status on exit - 'No Errors'
-int 80h; iterrupt to invoke sys call
+int 80h; interrupt to invoke sys call
