@@ -15,69 +15,26 @@ struct Animal {
     int Strength;
     int Toughness;
     int Luck;
-    int Score;
-
-    // const &string since an animal's name shouldn't change
-    // if we later need to change the animal's name for some
-    // reason, we could use "string type"
-    Animal(const string &type, int strength, int toughness, int luck) {
-        Type = type;
-        Strength = strength;
-        Toughness = toughness;
-        Luck = luck;
-        Score = 0;
-    }
 };
 
-// Could choose to return pointer to Animal instead
-/*
-Animal *determineWinner(array<Animal, 5> &animals, int choice1, int choice2) {
-    Animal animal1 = animals.at(choice1);
-    Animal animal2 = animals.at(choice2);
-
-    animal1.Score = animal1.Strength + animal1.Toughness;
-    animal2.Score = animal2.Strength + animal2.Toughness;
-
-    if (animal1.Score < animal2.Score) {
-        animal1.Score += animal1.Luck;
-    } else if (animal1.Score > animal2.Score) {
-        animal2.Score += animal2.Luck;
-    } else {
-        animal1.Score += animal1.Luck;
-        animal2.Score += animal2.Luck;
-    }
-
-    // TODO! Handle what happens if they have the same score
-    if (animal1.Score > animal2.Score) {
-        return &animals.at(choice1);
-    } else {
-        return &animals.at(choice2);
-    }
-}
-*/
-
-// NOTE: This mutates animal.Score, meaning it has SIDE EFFECTS
-// This may cause problems, but code assumes user only wants one "fight" per
-// program start. Possible fix is to set animal.Score to 0 before function
-// return, assuming that animal.Score should always start at 0
 Animal determineWinner(array<Animal, 5> &animals, int choice1, int choice2) {
     Animal animal1 = animals.at(choice1);
     Animal animal2 = animals.at(choice2);
 
-    animal1.Score = animal1.Strength + animal1.Toughness;
-    animal2.Score = animal2.Strength + animal2.Toughness;
+    int score1 = animal1.Strength + animal1.Toughness;
+    int score2 = animal2.Strength + animal2.Toughness;
 
-    if (animal1.Score < animal2.Score) {
-        animal1.Score += animal1.Luck;
-    } else if (animal1.Score > animal2.Score) {
-        animal2.Score += animal2.Luck;
+    if (score1 < score2) {
+        score1 += animal1.Luck;
+    } else if (score1 > score2) {
+        score2 += animal2.Luck;
     } else {
-        animal1.Score += animal1.Luck;
-        animal2.Score += animal2.Luck;
+        score1 += animal1.Luck;
+        score2 += animal2.Luck;
     }
 
     // TODO! Handle what happens if they have the same score
-    if (animal1.Score > animal2.Score) {
+    if (score1 > score2) {
         return animal1;
     } else {
         return animal2;
@@ -85,17 +42,55 @@ Animal determineWinner(array<Animal, 5> &animals, int choice1, int choice2) {
 }
 
 int main() {
-    array<Animal, 5> animals = {
-        Animal("Bear", 8, 6, 2),      Animal("Shark", 5, 5, 3),
-        Animal("Gorilla", 7, 5, 3),   Animal("Lion", 5, 6, 4),
-        Animal("Crocodile", 3, 9, 4),
-    };
+    Animal bear;
+    bear.Type = "Bear";
+    bear.Strength = 8;
+    bear.Toughness = 6;
+    bear.Luck = 2;
 
-    cout << "From the following list, pick two different animals to fight:\n";
+    Animal shark;
+    shark.Type = "Shark";
+    shark.Strength = 5;
+    shark.Toughness = 5;
+    shark.Luck = 3;
+
+    Animal gorilla;
+    gorilla.Type = "Gorilla";
+    gorilla.Strength = 7;
+    gorilla.Toughness = 5;
+    gorilla.Luck = 3;
+
+    Animal lion;
+    lion.Type = "Lion";
+    lion.Strength = 5;
+    lion.Toughness = 6;
+    lion.Luck = 4;
+
+    Animal crocodile;
+    crocodile.Type = "Crocodile";
+    crocodile.Strength = 3;
+    crocodile.Toughness = 9;
+    crocodile.Luck = 4;
+
+    array<Animal, 5> animals;
+    animals.at(0) = bear;
+    animals.at(1) = shark;
+    animals.at(2) = gorilla;
+    animals.at(3) = lion;
+    animals.at(4) = crocodile;
+
+    cout << "From the following list, pick two different animals to "
+            "fight:\n";
 
     // i = 1 because we want to count from 1 up
     // need to adjust size + 1 because of this
     for (int i = 1; i < animals.size() + 1; i++) {
+        /*
+        Should come out:
+        1. Bear
+        2. Shark
+        etc.
+        */
         cout << i << ". " + animals.at(i - 1).Type + "\n";
     }
 
@@ -110,13 +105,7 @@ int main() {
     }
 
     // decrement because choices start from 1, need to readjust
-    choice1--;
-    choice2--;
-
-    Animal winner = determineWinner(animals, choice1, choice2);
-
-    // for pointer version:
-    // Animal winner = *determineWinner(animals, choice1, choice2);
+    Animal winner = determineWinner(animals, choice1 - 1, choice2 - 1);
     cout << "\nThe " << winner.Type << " is the winner!\n";
 
     return 0;
