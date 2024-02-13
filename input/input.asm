@@ -14,11 +14,17 @@ section .data
 section .bss
     ; resb means reserve bytes
     input resb 1
+    total resb 1; reserve one byte for total
 
 ; code section
 section .text
 global _start
 _start:
+    ; initialize total
+    mov al, 0
+    mov [total], al
+
+repeat:
     ; Prompt
     mov eax, 4; do syscall sys_write
     mov ebx, 1; send to stdout
@@ -49,8 +55,17 @@ _start:
 
     ; now we could convert it from ascii to integer
     sub ebx, "0"; subtract char '0' (48 decimal) from ebx, store in ebx
-    mov [input], ebx
 
+    cmp ebx, 0; check if input number is equal to 0
+    je stop; go to stop and end program if input is 0
+
+    ; got past both exit conditions
+    ; convert total back into ascii
+    ; print converted total with sys_write
+
+    jmp repeat
+
+stop:
     ; Exit
     mov eax, 1
     mov ebx, 0

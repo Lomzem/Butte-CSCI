@@ -1,0 +1,10 @@
+#set page(fill: rgb("000000"))
+#set text(fill: rgb("ffffff"))
+
+= Binary Math: Logical Operations
+
+#heading(level: 3, "AND")
+- All input bits must be 1
+
+#heading(level: 3, "OR")
+- At least one of the input bits is 1
