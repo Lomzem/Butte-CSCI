@@ -25,7 +25,7 @@ Card NewCard(const string &phrase) {
 }
 
 bool allCardsMatched(array<Card, 4> &cards) {
-    for (int i = 1; i < cards.size(); i++) {
+    for (int i = 0; i < cards.size(); i++) {
         if (cards.at(i).Matched == false) {
             // if any are not matched then
             // cards cannot all be matched
