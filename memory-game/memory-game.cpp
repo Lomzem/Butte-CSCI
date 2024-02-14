@@ -17,8 +17,6 @@ struct Card {
     bool Matched;
 };
 
-// game should start with
-// cards being unmatched
 Card NewCard(const string &phrase) {
     Card c;
     c.Phrase = phrase;
@@ -88,10 +86,10 @@ int main() {
 
     array<Card *, 8> cardPointers;
 
-    cout << "Welcome to Memory Game!\n\n";
-
     // sets up game and assigns pairs
     buildRandomCardPointerArray(cards, cardPointers);
+
+    cout << "Welcome to Memory Game!\n\n";
 
     int totalGuesses = 0;
 
