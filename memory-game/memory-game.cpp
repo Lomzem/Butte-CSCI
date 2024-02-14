@@ -19,7 +19,7 @@ struct Card {
 
 // game should start with
 // cards being unmatched
-Card NewCard(string phrase) {
+Card NewCard(const string &phrase) {
     Card c;
     c.Phrase = phrase;
     c.Matched = false;
