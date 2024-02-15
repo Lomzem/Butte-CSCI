@@ -77,7 +77,7 @@ repeat:
 
     ; else add input to total and repeat
     add ecx, ebx; add total with input integer, store in ecx
-    mov [total], ecx; move the total back into total varaible
+    mov [total], ecx; move the total back into total variable
 
     jmp repeat; Go back to beginning
 
