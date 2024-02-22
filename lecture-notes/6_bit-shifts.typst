@@ -1,0 +1,14 @@
+#set page(fill: rgb("000000"))
+#set text(fill: rgb("ffffff"))
+
+= Bit Shifts
+
+#heading(level: 3, "Logical Shift")
+
+- Bits are shifted left or right by certain number of positions, empty spots filled with zeroes
+- Used for multiplication / division of unsigned numbers
+
+Left Shift$(n)$
+$display(
+= "num" * 2^n
+)$
