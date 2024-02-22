@@ -1,0 +1,57 @@
+#set page(fill: rgb("000000"))
+#set text(fill: rgb("ffffff"))
+
+= EFlags Register
+
+- 32 bit register, contains status flags, control flags, system flags
+
+- determines result of arithmetic operations
+
+- controls/determines processor behavior
+
+#heading(level: 2, "Status Flags")
+- Set or cleared as a result of arithmetic operations (comparisons)
+- Ex: Flag, Parity
+
+#heading(level: 2, "Control Flags")
+- control operations of the processor
+
+#heading(level: 2, "System Flags")
+- determine specific operations for the task
+
+= Flags/EFlags register
+
+31 $"_ _ _ _ _ _ "$ 0 $arrow.l$ This is carry flag
+
+CMP does subtraction: subtracts the second operand from the first, result decides the flags that are set/cleared
+
+#heading(level: 2, "Carry Flag")
+- Indicates carry/borrow occurred in least significant bit during operation
+- In unsigned numbers: set (1) when the second operand is greater than the first operand, 0 is the second operand is less than or equal to the first
+- If SF is on, carry flag will most likely be on
+
+Example: ```asm cmp 40, 10```
+
+$40 - 10 = 30$
+
+$10 <= 40$, so CF is 0 (clear)
+
+Example: ```asm cmp 10, 15```
+
+$10 - 15 = -5$
+
+$10 > 15$, so CF is 1 (set)
+
+Example: ```asm cmp 10, 10```
+
+$10 - 10 = 0$
+
+$10 == 10$, so  CF is clear (0), but zero flag is set (1)
+
+#heading(level: 2, "Overflow Flag")
+Set when there's an overflow (result is too large/small for signed numbers)
+
+#heading(level: 2, "Parity Flag")
+- Set when number of set bits in least significant byte is even or odd
+- Set when number of 1s in least significant byte is even
+- Cleared when odd
