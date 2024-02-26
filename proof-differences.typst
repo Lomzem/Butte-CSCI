@@ -1,0 +1,10 @@
+#set page(fill: rgb("000000"))
+#set text(fill: rgb("ffffff"))
+
+1. What is the same?
+
+In all our proofs, we could use truth tables to get to the truth. Modus ponens uses implications, and you could show implications on a truth table. Same with proof by contrapositive and proof by contradiction. You could you that something is a contradiction if its truth table is always false. Similarly, you could see the truth possibilities of contrapositive.
+
+2. One thing that is different from yours.
+
+Modus ponens uses implications in its proof. My proof is proof by contradiction, which doesn't necessarily need implications for its proof.
