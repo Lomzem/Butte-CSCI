@@ -1,0 +1,23 @@
+None of the unnoticed things met with at sea are mermaids
+P = noticed things at sea
+Q = isMermaid
+!P -> !Q
+
+Things entered in the log, as met with at sea, are sure to be worth remembering.
+P = Things entered in the log 
+R = Things met with at sea
+Q = isWorthRemembering
+P and R -> Q
+
+I have never met with anything worth remembering, when on a voyage
+P = When on a voyage
+Q = I have neer met with anything worth remembering
+P -> Q
+
+Things met with at sea, that are noticed, are sure to be recorded in the log
+P = is a thing met with at sea
+Q = is a thing that is noticed
+R = is sure to be recorded in the log
+P and Q -> R
+
+I have connected if else, programming condition, and negation. A program does something if a condition is true using an "if else statement". If the condition is false then do the else. Negation is connected to that else because the else logic only happens when the condition is false, or negated.

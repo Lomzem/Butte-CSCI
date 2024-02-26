@@ -1,0 +1,161 @@
+#set page(fill: rgb("000000"))
+
+#set text(fill: rgb("ffffff"))
+
+= Assessment SLO 2
+
+Four of the problems are on this PDF. Two of the others are on the other PDF.
+
+1. My kids are required to save their allowance. They earned \$1.00 on May 1st, \$1.75 on May 2, \$2.50 on May 3, and so on for the month of May. How much do they deposit on May 19th and May 31st?
+
+- Arithmetic
+- Increases by \$0.75 each day
+
+\
+Explicit equation
+
+$display(
+y = m x + b
+\
+1.75 = 0.75(2) + b
+\
+b = 0.25
+)$
+
+$display(
+f(n) = 0.75n + 0.25
+)$
+with n being current day of May
+
+\ 
+Recursive equation
+
+$display(
+f(n) = f(n-1) + 0.75
+\
+f(0) = 0.25
+)$
+
+\
+On May 19:
+
+$display(
+f(19)=0.75(19) + 0.25
+\
+= \$14.50
+)$
+
+On May 31:
+
+$display(
+f(31) = 0.75(31) + 0.25
+\
+= \$23.50
+)$
+
+#heading(level: 3, "Explanation")
+
+I knew the explicit equation for arithmetic by memory. I solved for b, which is like the deposit on May 0th. Then, I created the recursive equation using that b value as $f(0)$. Finally, I plugged 19 and 31 into my explicit equation to get the deposit values.
+
+\ \
+
+2. Legos are stacked in a pile with 24 Legos on the bottom row and 15 on the top row. There are 10 rows in all with each row having one more Lego than the one above it. How many Legos are in the stack?
+
+- 24 on bottom
+- 15 on top
+- 10 rows total
+- each row has one less lego than one below
+
+$display(
+f(0) = 24
+)$
+
+\
+Explicit equation
+
+$display(
+f(r) = -1(r) + 24
+)$
+
+\
+Recursive equation
+
+$display(
+f(r) = f(r-1) - 1
+\
+f(0)=24
+)$
+
+With $r$ representing row number starting count from 0
+
+Total legos
+
+$display(
+sum _(r=0)^(9) f(r)
+\
+sum _(r=0)^(9) -r + 24 = 195
+)$
+
+#heading(level: 3, "Explanation")
+I found the explicit equation by noticing each row decreases by one and using the template for arithmetic equations. I converted to recursive without external sources. Then, to get the total, I used a sum from row 0 (the 24 lego one) to row 9 (the tenth row from the bottom that has 15 legos).
+
+\ \
+
+3. An auditorium has 20 seats in the first row, 24 seats in the second row, 28 seats in the third row, and so on. If the auditorium has 30 rows of seats, how many seats does the final row have?
+
+- Goes up by 4 each time
+- Starts with 20
+
+Explicit equation
+
+$display(
+f(r) = 4(r-1) + 20
+)$
+
+With $r$ representing row number starting count from 1
+
+\
+Recursive equation
+
+$display(
+f(r) = f(r - 1) + 4
+\
+f(0) = 20
+)$
+
+With $r$ representing row number starting count from 1
+
+Final row:
+
+$display(
+f(30) = 4(30-1) + 20
+\
+= 136 "seats"
+)$
+
+#heading(level: 3, "Explanation")
+
+I quickly saw it was arithmetic going up by 4 each time and starting at 20. So I used the template for arithmetic recursive and explicit equations. To get the seat count, I plugged in row 30 for $r$ in $f(r)$
+
+#pagebreak()
+
+6. Convert the following recursive equation to a recursive algorithm:
+
+$display(
+f(n) = f(n-1) * 1.5\, "for" f(1)=5
+)$
+
+```python
+def recursive_geometric(n):
+    # basecase
+    if n == 1:
+        return 5
+    
+    # recursive call
+    else:
+        return recursive_geometric(n-1)*1.5
+```
+
+#heading(level: 3, "Explanation")
+
+I opened a python file and just used by experience on previous assignments to complete it. f(1) should return 5, so I returned 5 when n was 1. If not, I multiplied f(n-1) by 1.5 like in the original equation
