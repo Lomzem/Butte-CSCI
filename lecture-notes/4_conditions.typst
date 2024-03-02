@@ -1,0 +1,46 @@
+// = Control Flow: Jumps, Comparisons, Loops
+#heading(level: 2, "FLAGS Register")
+- 32 bits in 32x86
+- Flags are true or false
+
+#heading(level: 3, "ZF (Zero Flag)")
+1 if result of operation is zero, 0 otherwise (to check if eq/neq)
+
+- CMP usually to check if things equal
+- CMP subtracts two operands from each other, depending on result flags set/cleared
+
+#heading(level: 3, "CF (Carry Flag)")
+1 if operation result in carry out of most significant bit
+- Most significant bit is top bit
+
+#heading(level: 3, "PF (Parity Flag)")
+1 if result is even
+
+#heading(level: 3, "SF (Sign Flag)")
+1 if most sig bit of result if set (- num in signed operations)
+
+#heading(level: 3, "OF (Overflow Flag)")
+1 if result can't be  represented in given number of bits (too big/small)
+
+#heading(level: 2, "Jumps")
+Makes code jump from where it is currently to a label
+
+#set raw(block: true)
+
+Unconditional Jump:
+- always executes
+```asm
+jmp label
+```
+
+Conditional jump:
+- only executes if condition is true, needs to be combined w/ comparison operation
+```asm
+je; jump if eq
+jne; jump if neq
+jc; jump if carry flag is set
+jnc; jump if not carry flag is set
+```
+
+#heading(level: 2, "Input")
+- is a syscall
