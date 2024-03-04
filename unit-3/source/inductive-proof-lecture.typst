@@ -60,7 +60,7 @@ $display(
 a(n) = a(n-1) dot r = a(0) dot r^n
 )$
 
-#heading(level: 3, "Base Case")
+#heading(level: 3, "Base Case:")
 
 $display(
 n = 0
@@ -68,7 +68,7 @@ n = 0
 a(0) = a(0) dot r^0
 )$
 
-#heading(level: 3, "Hypothesis")
+#heading(level: 3, "Hypothesis:")
 $display(
     a(k) = a(k-1) dot r = a(0) dot r^k "is TRUE"
 )$
