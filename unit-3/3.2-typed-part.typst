@@ -1,0 +1,47 @@
+= Question
+
+Regarding the following SLO:
+- Analyze a problem to create relevant recurrence equations
+
+Discuss if you believe you are learning, meeting, or exceeding expectations towards this SLO
+
+If you are exceeding expectations, tell me what evidence shows this
+
+= Answer
+
+I am exceeding expectations for this SLO. The previous questions I answered on the other document were completed without having to look at my notes. I converted a word problem into numerical facts, used those facts to make equations, and used those equations to solve the problems.
+
+= Question
+
+Choose ONE of the following prompts to discuss in detail. Remember this SLO is "describe how" make sure you justify statements with examples in description. I'm also looking for explicit connections between logic and the computing
+
+1. Describe how SQL queries use symbolic logic
+
+= Answer
+
+SQL queries could filter what results show up from a database. This allows people to see only the information that they specifically want. They accomplish this using symbolic logic.
+
+Symbolic logic includes logic gates such as AND and OR. It also includes propositions.
+
+For example in a database of customers, a possible proposition could be: "User is older than 21".
+
+It's a proposition because it could either be true or false, user IS above the age or ISN'T.
+
+Another proposition could be: "User is male"
+
+Then, you could filter your database queries using these propositions and logic gates. For example, if you wanted only male users who are above 21, you could do an SQL query for "Age > 21 AND Gender = MALE"
+
+Then, the query would only show results for which that proposition is TRUE, and it will omit all results for which that proposition is false, which would only show you the information you want to see.
+
+= Question
+
+Regarding the following SLO:
+- Describe how formal tools of symbolic logic are used to model real-life situations, including those arising in computing contexts such as program correctness, database queries, and algorithms
+
+Discuss if you believe you are learning, meeting, or exceeding expectations towards this SLO.
+
+If you are exceeding expectations, tell me what evidence shows this
+
+= Answer
+
+I am confident that I am exceeding expectations for this SLO. The mind map I created on the previous assessments for this SLO demonstrate my understanding of this SLO. Additionally, the previous question required me to once again demonstrate my understanding of this SLO, and I also provided an answer that I believe exceeds this expectation.

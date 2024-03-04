@@ -1,0 +1,87 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+= Inductive Proof
+
+$display(
+a(0)=1
+)$
+,
+$display(
+d=2
+)$
+
+$display(
+a(1)=1+2=3 = a(0) + 2
+\
+a(2)=3+2=5 = a(1) + 2 = ((a(0)+2)+2)+2
+\
+a(n) = a(0) + 2n
+)$
+
+#heading(level: 3, "Prove:")
+$display(
+a(n) = a(n-1) + 2 = a(0) + 2n
+)$
+
+#heading(level: 3, "Base Case (usually the recursive")
+\
+$display(
+    a(0) = a(0) + 2(0)
+    \
+    a(0) = a(0)
+)$
+
+#heading(level: 3, "Hypothesis:")
+\
+$display(
+a(k) = a(k-1) + 2 = a(0) + 2k "is TRUE"
+\
+a(0)=1
+)$
+
+for $k >= 0$
+
+#heading(level: 3, "Proof:")
+\
+$display(
+    a(k+1) = a(k+1-1) + 2 = a(0) + 2(k+1)
+    \
+    a(k+1) = a(k) + 2 = a(0) + 2k + 2
+    \
+    a(0) + 2k + 2 = a(0) + 2k + 2
+)$
+
+= Second Proof
+
+#heading(level: 3, "Prove:")
+
+$display(
+a(n) = a(n-1) dot r = a(0) dot r^n
+)$
+
+#heading(level: 3, "Base Case")
+
+$display(
+n = 0
+\
+a(0) = a(0) dot r^0
+)$
+
+#heading(level: 3, "Hypothesis")
+$display(
+    a(k) = a(k-1) dot r = a(0) dot r^k "is TRUE"
+)$
+
+for k $>=$ 0
+
+#heading(level: 3, "Proof:")
+$display(
+    a(k+1) = a(k+1-1) dot r = a(0) dot r^(k+1)
+    \
+    a(k+1) = a(k) dot r = a(0) dot r^(k+1)
+    \
+    a(k+1) = a(0) dot r^k dot r = a(0) dot r^(k+1)
+    \
+    a(k+1) = a(0) dot r^(k+1) = a(0) dot r^(k+1)
+)$
