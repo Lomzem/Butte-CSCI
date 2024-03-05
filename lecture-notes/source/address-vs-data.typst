@@ -1,0 +1,23 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+= Address vs Data
+
+- Typically, information abt program currently running will be in volatile memory (RAM, etc)
+
+- To get any data, computer needs to find it, what addresses are for
+
+- Memory address is location of something in memory
+
+- In 32-bit x86 arch, 32-bit long value
+
+- Usually a big hex value like 0x00FC567B
+
+```asm
+;variable name is actually a label, name for addy where data is
+mov eax, someString
+
+; To actually get data:
+mov ebx, [someString]
+```
+
