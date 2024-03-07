@@ -1,0 +1,57 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+$display(
+product_(t=2)^(infinity) 1 - 1 / t = (n+1) / (2 n) t
+)$
+
+Base Case:
+
+$display(
+t = n = 2
+)$
+
+$display(
+1 - 1 / (2^2) = (2+1) / (2(2))
+\
+1 - 1 / 4 = 3 / 4
+\
+3/4 = 3/4
+)$
+
+Hypothesis:
+
+$display(
+product 1 - 1 / (k^2) = (k+1) / (2k)
+)$
+is TRUE for $k>=2$
+
+Proof:
+
+$display(
+product 1 - 1 / (k^2) dot (1 - 1 / (k+1)^2) = (k+1+1) / (2(k+1))
+)$
+
+$display(
+k+1 - (k+1) / (k+1)^2 = (2k(k+2)) / (2(k+1))
+)$
+
+$display(
+(k+1)(k+1) - 1 = (2k(k+2)) / (2)
+)$
+
+$display(
+2(k+1)(k+1) - 2 = 2k(k+2)
+)$
+
+$display(
+2(k^2 + 2k + 1) - 2 = 2k^2 + 4k
+)$
+
+$display(
+2k^2 + 4k + 2 - 2 = 2k^2 + 4k
+)$
+
+$display(
+2k^2 + 4k = 2k^2 + 4k checkmark
+)$
