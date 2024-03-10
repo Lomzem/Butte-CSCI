@@ -26,6 +26,18 @@ section .data
     ; len of color added message
     colorAddedMsgLen equ $-colorAddedMsg
 
+    ; string start listing colors, 10 for newlines
+    listStartStr db 10, "Here are your colors:", 10
+
+    ; length of listStartStr
+    listStartStrLen equ $-listStartStr
+
+    ; done message, 10 for newline
+    doneMsg db "Done!", 10
+
+    ; length of doneMsg
+    doneMsgLen equ $-doneMsg
+
     ; constant for storing newline (decimal 10)
     newline db 10
 
@@ -40,6 +52,15 @@ section .data
     cyanChar equ "c"
     yellowChar equ "y"
     whiteChar equ "w"
+
+    ; Constants for color ascii characters (uppercase)
+    redCharU equ "R"
+    blueCharU equ "B"
+    greenCharU equ "G"
+    purpleCharU equ "P"
+    cyanCharU equ "C"
+    yellowCharU equ "Y"
+    whiteCharU equ "W"
 
     ; Constants for strings to print for the colors, 10 for newline
     ; AND the lengths of the strings with memory subtraction
@@ -109,8 +130,8 @@ CheckForQuit:
     ; check if userInput is equal to quit character
     cmp eax, quitChar
 
-    ; if userInput is quit character, go to quick section
-    je Quit
+    ; if userInput is quit character, go to quit section
+    je StartQuit
 
     ; since didn't jump, user didn't enter quit
     ; go to CheckForColors to see if input is a color
@@ -123,17 +144,61 @@ CheckForColors:
     ; move value of userInput into eax for checking
     mov eax, [userInput]
 
-    ; check for red
     ; check if userInput == redChar
     ; if true, jump to isRed
+    ; checks both lowercase and uppercase
     cmp eax, redChar
     je isRed
+    cmp eax, redCharU
+    je isRed
 
-    ; check for blue
     ; check if userInput == blueChar
     ; if true, jump to isBlue
+    ; checks both lowercase and uppercase
     cmp eax, blueChar
     je isBlue
+    cmp eax, blueCharU
+    je isBlue
+
+    ; check if userInput == greenChar
+    ; if true, jump to isGreen
+    ; checks both lowercase and uppercase
+    cmp eax, greenChar
+    je isGreen
+    cmp eax, greenCharU
+    je isGreen
+
+    ; check if userInput == purpleChar
+    ; if true, jump to isPurple
+    ; checks both lowercase and uppercase
+    cmp eax, purpleChar
+    je isPurple
+    cmp eax, purpleCharU
+    je isPurple
+
+    ; check if userInput == cyanChar
+    ; if true, jump to isCyan
+    ; checks both lowercase and uppercase
+    cmp eax, cyanChar
+    je isCyan
+    cmp eax, cyanCharU
+    je isCyan
+
+    ; check if userInput == yellowChar
+    ; if true, jump to isYellow
+    ; checks both lowercase and uppercase
+    cmp eax, yellowChar
+    je isYellow
+    cmp eax, yellowCharU
+    je isYellow
+
+    ; check if userInput == whiteChar
+    ; if true, jump to isWhite
+    ; checks both lowercase and uppercase
+    cmp eax, whiteChar
+    je isWhite
+    cmp eax, whiteCharU
+    je isWhite
 
     ; by now, it's not a color, jump to invalid input
     jmp InvalidInput
@@ -145,6 +210,31 @@ isRed:
 
 isBlue:
     push blueChar; push blueChar onto stack
+    inc edi; increment stack counter
+    jmp ColorAddedMsg
+
+isGreen:
+    push greenChar; push greenChar onto stack
+    inc edi; increment stack counter
+    jmp ColorAddedMsg
+
+isPurple:
+    push purpleChar; push purpleChar onto stack
+    inc edi; increment stack counter
+    jmp ColorAddedMsg
+
+isCyan:
+    push cyanChar; push cyanChar onto stack
+    inc edi; increment stack counter
+    jmp ColorAddedMsg
+
+isYellow:
+    push yellowChar; push yellowChar onto stack
+    inc edi; increment stack counter
+    jmp ColorAddedMsg
+
+isWhite:
+    push whiteChar; push whiteChar onto stack
     inc edi; increment stack counter
     jmp ColorAddedMsg
 
@@ -182,7 +272,127 @@ newLinePromptAgain:
 
     jmp PromptForInput; go back to PromptForInput
 
-Quit:
+StartQuit:
+    ; Print that we're starting to list colors
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, listStartStr; msg to write
+    mov edx, listStartStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; actually start looping
+
+QuitColorLoop:
+    ; This section loops through the stack
+    ; until it is empty, printing colors as
+    ; it pops from the stack
+    cmp edi, 0; compare edi (stack counter) to 0
+    jle exit; jump to exit is <= 0
+
+    ; if got to here, means stack isn't empty
+    ; check for colors and print associated strings
+
+    pop eax; pop from stack and store in eax for comparisons
+    dec edi; decrement stack counter since we popped one
+
+    ; if popped value == redChar go to exitRed
+    cmp eax, redChar
+    je exitRed
+
+    ; if popped value == blueChar go to exitBlue
+    cmp eax, blueChar
+    je exitBlue
+
+    ; if popped value == greenChar go to exitGreen
+    cmp eax, greenChar
+    je exitGreen
+
+    ; if popped value == purpleChar go to exitPurple
+    cmp eax, purpleChar
+    je exitPurple
+
+    ; if popped value == cyanChar go to exitCyan
+    cmp eax, cyanChar
+    je exitCyan
+
+    ; if popped value == yellowChar go to exitYellow
+    cmp eax, yellowChar
+    je exitYellow
+
+    ; if popped value == whiteChar go to exitWhite
+    cmp eax, whiteChar
+    je exitWhite
+
+exitRed:
+    ; Print red message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, redStr; msg to print
+    mov edx, redStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exitBlue:
+    ; Print blue message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, blueStr; msg to print
+    mov edx, blueStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exitGreen:
+    ; Print green message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, greenStr; msg to print
+    mov edx, greenStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exitPurple:
+    ; Print purple message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, purpleStr; msg to print
+    mov edx, purpleStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exitCyan:
+    ; Print cyan message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, cyanStr; msg to print
+    mov edx, cyanStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exitYellow:
+    ; Print yellow message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, yellowStr; msg to print
+    mov edx, yellowStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exitWhite:
+    ; Print white message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, whiteStr; msg to print
+    mov edx, whiteStrLen; len of msg
+    int 80h; syscall
+    jmp QuitColorLoop; go back to QuitColorLoop
+
+exit:
+    ; Print done message
+    mov eax, 4; sys_write
+    mov ebx, 1; to stdout
+    mov ecx, doneMsg; msg to write
+    mov edx, doneMsgLen; len of message
+    int 80h; syscall
+
     ; Exit program
     mov eax, 1; sys_exit
     mov ebx, 0; exit code 0 -- no errors
