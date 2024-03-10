@@ -115,7 +115,7 @@ PromptForInput:
     int 80h; syscall
 
 ConvertUpperToLower:
-    ; This section checks if userInput is usercase
+    ; This section checks if userInput is uppercase
     ; and converts it to lowercase using ascii arithmetic
     ; ANOTHER SOLUTION could be to make constants for the uppercase
     ; characters and also jump if equal with those to the same places,
