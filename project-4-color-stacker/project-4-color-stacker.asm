@@ -4,7 +4,9 @@
 ; Project Name: Color Stacker
 ; CSCI-10: Computer Architecture and Organization
 ; Spring 2024
-; Project Description: TODO
+; Project Description: Allows user to input character for color,
+; add that color to the stack, and then see all colors on stack,
+; when user exits
 ;*************************************************************************
 
 section .data
@@ -17,7 +19,7 @@ section .data
     ; store invalid input message in variable, 10 for newline
     invalidInputMsg db "Invalid color character! Skipping...", 10
 
-    ; len of prompt string with memory subtraction
+    ; len of invalid input with memory subtraction
     invalidInputMsgLen equ $-invalidInputMsg
 
     ; string to show a color was added, 10 for newline
@@ -52,15 +54,6 @@ section .data
     cyanChar equ "c"
     yellowChar equ "y"
     whiteChar equ "w"
-
-    ; Constants for color ascii characters (uppercase)
-    redCharU equ "R"
-    blueCharU equ "B"
-    greenCharU equ "G"
-    purpleCharU equ "P"
-    cyanCharU equ "C"
-    yellowCharU equ "Y"
-    whiteCharU equ "W"
 
     ; Constants for strings to print for the colors, 10 for newline
     ; AND the lengths of the strings with memory subtraction
@@ -121,11 +114,33 @@ PromptForInput:
     mov edx, 1; only read one byte (should be newline)
     int 80h; syscall
 
-CheckForQuit:
-    ; This section is for checking is "userInput" is "q"
+ConvertUpperToLower:
+    ; This section checks if userInput is usercase
+    ; and converts it to lowercase using ascii arithmetic
+    ; ANOTHER SOLUTION could be to make constants for the uppercase
+    ; characters and also jump if equal with those to the same places,
+    ; but instructions said not to use uppercase for comparisons
 
     ; move the value from userInput into eax
     mov eax, [userInput]
+
+    ; Compare userInput to first lowercase ascii character "a"
+    cmp eax, "a"
+
+    ; if userInput is ascii "a" (97 ascii) or higher, just go to next section
+    jge CheckForQuit
+
+    ; if userInput is less than "a" (97 ascii) either is uppercase
+    ; or is an invalid input, either way, try adding distance from
+    ; lowercase "a" to uppercase "A" in ascii
+
+    mov ebx, "a"; store ascii "a" into ebx
+    sub ebx, "A"; subtract "A" to get distance between lowercase and uppercase
+    add eax, ebx; add this distance from ebx into userInput to convert from uppercase to lowercase
+    ; Now it just goes to CheckForQuit
+
+CheckForQuit:
+    ; This section is for checking is "userInput" is "q"
 
     ; check if userInput is equal to quit character
     cmp eax, quitChar
@@ -135,69 +150,44 @@ CheckForQuit:
 
     ; since didn't jump, user didn't enter quit
     ; go to CheckForColors to see if input is a color
-    jmp CheckForColors
     
 CheckForColors:
     ; This section is for validating that the user
     ; inputted a valid color
 
-    ; move value of userInput into eax for checking
-    mov eax, [userInput]
-
     ; check if userInput == redChar
     ; if true, jump to isRed
-    ; checks both lowercase and uppercase
     cmp eax, redChar
-    je isRed
-    cmp eax, redCharU
     je isRed
 
     ; check if userInput == blueChar
     ; if true, jump to isBlue
-    ; checks both lowercase and uppercase
     cmp eax, blueChar
-    je isBlue
-    cmp eax, blueCharU
     je isBlue
 
     ; check if userInput == greenChar
     ; if true, jump to isGreen
-    ; checks both lowercase and uppercase
     cmp eax, greenChar
-    je isGreen
-    cmp eax, greenCharU
     je isGreen
 
     ; check if userInput == purpleChar
     ; if true, jump to isPurple
-    ; checks both lowercase and uppercase
     cmp eax, purpleChar
-    je isPurple
-    cmp eax, purpleCharU
     je isPurple
 
     ; check if userInput == cyanChar
     ; if true, jump to isCyan
-    ; checks both lowercase and uppercase
     cmp eax, cyanChar
-    je isCyan
-    cmp eax, cyanCharU
     je isCyan
 
     ; check if userInput == yellowChar
     ; if true, jump to isYellow
-    ; checks both lowercase and uppercase
     cmp eax, yellowChar
-    je isYellow
-    cmp eax, yellowCharU
     je isYellow
 
     ; check if userInput == whiteChar
     ; if true, jump to isWhite
-    ; checks both lowercase and uppercase
     cmp eax, whiteChar
-    je isWhite
-    cmp eax, whiteCharU
     je isWhite
 
     ; by now, it's not a color, jump to invalid input
@@ -286,7 +276,7 @@ QuitColorLoop:
     ; until it is empty, printing colors as
     ; it pops from the stack
     cmp edi, 0; compare edi (stack counter) to 0
-    jle exit; jump to exit is <= 0
+    jle exit; jump to exit if counter <= 0
 
     ; if got to here, means stack isn't empty
     ; check for colors and print associated strings
