@@ -1,0 +1,103 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+#heading(level: 2, "Prove:")
+
+$display(
+n! > 2^n
+)$ for $n >= 4$
+
+#heading(level: 2, "Base Case:")
+$display(
+n=4
+\
+4! > 2^4
+\
+24 > 16
+)$
+
+#heading(level: 2, "Hypothesis:")
+
+$k! > 2^k$ is TRUE for $k>=4$
+
+#heading(level: 2, "Proof:")
+
+$display(
+(k+1)! > 2^(k+1)
+\
+(k+1)k! > 2(2^k)
+\
+(k+1)2^k > 2(2^k)
+)$
+
+$k >= 4$ $therefore$ $k+1 > 2$
+
+$display(
+(k+1)! > k!(k+1) > 2^k (k+1) > 2(2^k) > 2^k
+)$
+
+#heading(level: 2, "Prove:")
+
+$display(
+2^(2n) - 1
+)$ is divisible by $3$
+
+#heading(level: 2, "Base Case:")
+$display(
+n=1
+\
+2^(2(1)) - 1
+\
+4 - 1 = 3 / 3 = 1
+)$
+
+#heading(level: 2, "Hypothesis:")
+
+$2^(2k) - 1$ is divisible by $3$ is TRUE for $k >= 1$
+
+#heading(level: 2, "Proof:")
+$display(
+2^(2(k+1)) - 1
+\
+2^(2k + 2) - 1
+\
+2^2(2^k) - 1
+\
+4(2^k) - 1
+\
+(3+1)2^k-1
+\
+3(2^k) + 2^k - 1
+)$
+
+#heading(level: 2, "Prove")
+
+```python
+fact(n)
+    if n == 0:
+        return 1
+    else:
+        return n * fact(n-1)
+```
+
+#heading(level: 2, "Base case")
+
+$n=0$
+
+```python
+fact(0)
+    if 0 == 0:
+        return 1
+```
+
+#heading(level: 2, "Hypothesis:")
+```python fact(k)``` is TRUE for $k>=0$
+
+#heading(level: 2, "Proof:")
+
+```python
+fact(k + 1):
+    if k + 1 == 0 false
+    else:
+        return k * fact(k + 1 - 1)
+```
