@@ -1,0 +1,262 @@
+// #set page(fill: rgb("#26233a"))
+// #set text(fill: rgb("#e0def4"))
+
+Prove:
+
+$display(
+1^2 + 2^2 + 3^2 + ... + n^2 = 1/6 n(n+1)(2n+1)
+)$
+
+Basically same as:
+
+$display(
+sum_(i=0)^n n^2 = 1/6 n(n+1)(2n+1)
+)$
+
+#heading(level: 3, "Base Case: n=1")
+
+$display(
+0^2 + 1^2 = 1/6 (1)(1+1)(2(1)+1)
+\
+1 = 1/6 dot 2 dot 3 = 1 checkmark
+)$
+
+#heading(level: 3, "Hypothesis:")
+
+$display(
+sum_(i=0)^n n^2 = 1/6n(n+1)(2n+1)
+)$
+is TRUE for $n>=1$
+
+#heading(level: 3, "Proof:")
+
+$display(
+(sum_(i=0)^n n^2) + (n+1)^2 = 1/6(n+1)(n+1+1)(2(n+1)+1)
+)$
+
+Substituting base case in for $display(
+(sum_(i=0)^n n^2)
+)$
+
+$display(
+1/6 n(n+1)(2n+1) + (n+1)^2 = 1/6(n+1)(n+2)(2n+3)
+\
+n^3/3 + frac(3n^2, 2) + frac(13n, 6) + 1 =
+frac(n^3, 3) + frac(3n^2, 2) + frac(13n,6) + 1 checkmark
+)$
+
+Polynomial expansion from wolframalpha.com
+
+#pagebreak()
+
+#heading(level: 3, "Prove:")
+$display(
+n < 2^n "for n > 0"
+)$
+
+#heading(level: 3, "Base Case: n=1")
+
+$display(
+1 < 2^1 checkmark
+)$
+
+#heading(level: 3, "Hypothesis:")
+
+$display(
+n < 2^n
+)$ is true for $n >= 1$
+
+#heading(level: 3, "Proof")
+
+$display(
+    (n+1) < 2^(n+1)
+)$
+
+Substitute base case for $n$
+
+$display(
+2^n + 1 < 2(2^n) checkmark
+)$
+
+#heading(level: 3, "Conclusion")
+
+Adding one will always be less than multiplying by 2 for $2^n$ if $n>=1$
+
+#pagebreak()
+#heading(level: 3, "Prove:")
+$display(
+3^n > 2^n "for n>0"
+)$
+
+#heading(level: 3, "Base Case: n=1")
+
+$display(
+3^1 > 2^1
+3 > 2 checkmark
+)$
+
+#heading(level: 3, "Hypothesis:")
+
+$display(
+3^n > 2^n
+)$ is true for $n>=1$
+
+#heading(level: 3, "Proof")
+
+$display(
+3^(n+1) > 2^(n+1)
+\
+3^n dot 3^1 > 2 dot 2^n
+)$
+
+Substitute hypothesis in for $3^n$
+
+$display(
+3(2^n) > 2(2^n) checkmark
+)$
+
+#pagebreak()
+
+#heading(level: 3, "Prove:")
+$9^n - 1$ is a multiple of 8 for all positive integers $n>0$
+
+#heading(level: 3, "Base Case: n=1")
+$display(
+9^1 - 1
+\
+8
+\
+\
+8 slash 8 = 1 checkmark
+)$
+
+#heading(level: 3, "Hypothesis")
+
+$9^n - 1$ is a multiple of 8 for all positive integers $n>=1$
+
+#heading(level: 3, "Proof")
+
+$display(
+9^(n+1) - 1
+\
+9^n dot 9 - 1
+\
+8(9^n) + 9^n - 1 checkmark
+)$
+
+#heading(level: 3, "Conclusion")
+Anything times 8 is a multiple of 8, so $8(9^n)$ is a multiple of 8. In the base case, we already proved $9^n - 1$ is a multiple of 8
+
+#pagebreak()
+
+#heading(level: 3, "Prove")
+
+$display(
+4^n - 1
+)$ is a multiple of 3 for all positive integers $n>0$
+
+#heading(level: 3, "Base Case: n=1")
+
+$display(
+4^1 - 1
+\
+3
+\
+\
+3 slash 3 = 1 checkmark
+)$
+
+#heading(level: 3, "Hypothesis")
+$display(
+4^n - 1
+)$ is a multiple of 3 for all positive integers $n>=1$
+
+#heading(level: 3, "Proof")
+$display(
+4^(n+1)-1
+\
+4n dot 4^1 - 1
+\
+3(4n) + 4n - 1 checkmark
+)$
+
+#heading(level: 3, "Conclusion:")
+
+Since $4n$ is being multiplied by 3, that term has to be a multiple of 3. We already proved that $4n-1$ is a multiple of 3 in the base case.
+
+#pagebreak()
+
+#heading(level: 3, "Prove:")
+
+```python
+def func(n):
+    i = 0
+    if (n > 1):
+        func(n - 1)
+    for i in range(n):
+        print(" * ", end=" ")
+```
+
+#heading(level: 3, "Base Case: n=1")
+
+```python
+func(1):
+    i = 0
+    if (1 > 1) # False:
+    
+    for i in range(1):
+        print(" * ", end=" ")
+```
+
+#heading(level: 3, "Assume")
+
+```python func(n)``` is true for $n >= 1$
+
+#heading(level: 3, "Proof")
+
+```python
+func(n+1):
+    i = 0
+    if (n+1 > 1): #True
+        func(n + 1 - 1) # Goes back to assumption
+```
+
+#heading(level: 3, "Conclusion")
+
+n + 1 - 1 = n, so it just goes back to our assumption
+
+#pagebreak()
+
+#heading(level: 3, "Prove:")
+
+```python
+def func(array, n):
+    if (n==1):
+        return array[0]
+    else:
+        x = func(a, n-1)
+    if (x > a[n-1]):
+        return x
+    else:
+        return a[n-1]
+```
+
+#heading(level: 3, "Base Case: n=1")
+
+```python
+func(array, 1):
+    if (1 == 1): # True
+        return array[0]
+```
+
+#heading(level: 3, "Assumption:")
+```python func(n)``` is true for $n >= 1$
+
+#heading(level: 3, "Proof:")
+
+```python
+func(array, n+1):
+    if (n + 1 == 1): # False
+    else:
+        x = func(a, n + 1 - 1) # Goes back to assumption
+```
