@@ -1,0 +1,158 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+#heading(level: 3, "Means \"Dad\" and Lizzy are part of the set \"A\":")
+
+$display(
+    A = {"Dad", "Lizzy"}
+)$
+
+#heading(level: 3, "Means \"E\" is an empty set")
+
+$display(
+    E = {}
+)$ or
+$display(
+   E = emptyset
+)$
+
+#heading(level: 3, "Means \"contains all members of group under consideration\"")
+
+$display(
+    Omega = {"Everything"}
+    \
+    union = {"Everything"}
+)$
+
+#heading(level: 3, "Is a member of")
+
+$display(
+    "Lizzy" in F
+)$
+
+#heading(level: 3, "Is not a member of")
+
+$display(
+    "TJ" in.not F
+)$
+
+#heading(level: 3, "Subsets")
+
+$display(
+    X subset.eq Y
+)$
+
+- means $x$ is a subset of $y$
+- every member of $x$ is also a member of $y$
+- not necessarily reversible
+- could be true #underline("even") if $x=y$
+
+$display(
+    X subset Y
+)$
+
+- same as above, but #underline("false") if $x=y$
+- called *proper subset*
+
+#heading(level: 3, "Defining set extensionally")
+
+$display(
+    P = {"Dad, Mom"}
+)$
+
+#heading(level: 3, "Defining set intensionally")
+
+Let $P$ be the set of all parents
+
+- Two sets are equal if they have the same #underline("extension"), doesn't have to have the same intension
+
+#heading(level: 3, "Intensional definition with bracket notation")
+
+$display(
+    M = {k: k "is between 1 and 20, and a multiple of 3"}
+)$
+
+- Intensionally defining set, $M$ is the set of numbers $k$ such that $k$ is between 1 and 20, and a multiple of 3
+
+#heading(level: 3, "Infinite Set")
+
+$display(
+    I = {3, 6, 9, 12, ...}
+)$
+
+#heading(level: 3, "Cardinality")
+
+#underline("cardinality"): size of set
+
+$display(
+    |emptyset| = 0
+    \
+    |{emptyset}| = 1
+)$
+
+#pagebreak()
+
+#heading(level: 3, "Set Operators")
+
+#underline("Union"): OR
+
+$display(
+    A = {"Dad, Lizzy"}
+    \
+    B = {"Lizzy, TJ, Tommy"}
+    \
+    A union B = {"Dad, Lizzy, TJ, Tommy"}
+)$
+
+#underline("Intersection"): AND
+
+$display(
+    A = {"Dad, Lizzy"}
+    \
+    B = {"Lizzy, TJ, Tommy"}
+    \
+    A sect B = {"Lizzy"}
+)$
+
+#underline("Partial complement")
+
+- $A - B$ contains elements in A that are #underline("not") in B
+
+#underline("Total complement")
+
+$display(
+    overline(B) = Omega - B
+)$
+
+- Means all the things that aren't in B
+
+#underline("Cartesian product")
+
+$display(
+    A = {"Bob, Dave"}
+    \
+    B = {"Jenny, Gabbie, Tiff"}
+    \
+    A times B = {("Bob, Jenny"), ("Bob, Gabbie"), ("Bob, Tiff"), ("Dave, Jenny"), ("Dave, Gabbie"), ("Dave, Tiff")}
+)$
+
+#heading(level: 3, "De Morgan Laws")
+
+$display(
+    overline(X sect Y) = overline(X) union overline(Y)
+)$
+
+#heading(level: 3, "Power Set")
+
+- #underline("Power set"): the set of all subsets of that other set
+- every item, every combination, and no items
+
+$display(
+    A = {"Dad, Lizzy"}
+    \
+    PP (A) = {{"Dad, Lizzy"}, {"Dad"}, {"Lizzy"}, emptyset}
+)$
+
+#heading(level: 3, "Partition")
+
+- A group of subsets that contain everything in the original set collectively, and share no duplicates between subsets
