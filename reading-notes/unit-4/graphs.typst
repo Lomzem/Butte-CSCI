@@ -1,0 +1,123 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+Graphs made of:
+
+#heading(level: 3, "Vertices")
+- $<=0$ per graph
+- nodes, concepts, objects
+
+#heading(level: 3, "Edges")
+- $<=0$ per graph
+- links, connections, associates, relationships
+- Connects two vertices or vertex to itself (*loop*)
+
+/ path: sequence of consecutive edges from one vertex to another
+
+/ undirected (bidirectional) graphs : symmetric
+/ directed graphs :
+
+#heading(level: 3, "Weights")
+/ weights: distance/cost between vertices
+
+#figure(
+  image("./weighted-undirected-graph.png", width: 50%),
+  caption: [Weighted, undirected graph],
+)
+
+/ adjacent:
+
+/ connected:
+- (vertices) at least one path between vertices
+- (entire graphs) _every_ node can be reached by others
+
+/ degree: number of edges connected to the vertex; in-degree/out-degree for arrows in/out
+
+/ cycle: path that begins and ends at same vertex
+
+/ DAG (directed, acyclic graph):
+- graph of dependencies
+- *directed* means other nodes part of path prior to it
+
+/ acyclic: _no_ kind of cycle can exist in the graph
+
+= Breadth-first traversal
+- Uses queue (FIFO)
+- Finish level 1 first, then go to level 2
+- Visit all direct children first _once_, then visit all second children _once_, etc.
+
+#pagebreak()
+/ Queue Data Structure:
+- Enque (add) node at q[-1]
+- Deque (remove) node from q[0]
+
+#heading(level: 3, "Steps")
++ Mark and queue first node
+
+While queue is not empty:
++ Pop from front
++ Do stuff
++ Mark as visited
++ Queue all unvisited adjacent nodes
++ Repeat
+
+```python
+def bfs(root: Vertex):
+    visited = []
+    q = []
+
+    while len(q) > 0:
+        cur = q.pop()
+
+        do_stuff(cur)
+        for neighbor in graph[cur]:
+            if neighbor not in visited:
+                visited.append(neighbor)
+                queue.append(neighbor)
+```
+
+= Depth-first traversal
+- Go as deep as you can first, then go to next
+- Uses *stack* 
+
+#heading(level: 3, "Steps")
++ Mark and push first node onto stack
+
+While stack is not empty:
++ pop(-1)
++ Do Stuff
++ Add all neighbors to visited
+
+/ Stack Data Structure: 
+- LIFO
+- push_back()
+- pop(-1)
+
+```python
+def dfs(root_node):
+    visited = set()
+    stack = []
+    stack.append(root_node)
+
+    while len(stack) > 0:
+        s = stack.pop(-1)
+
+        if s not in visited:
+            do_stuff(s)
+            visited.add(s)
+
+        for neighbor in s.neighbors:
+            if neighbor not in visited:
+                stack.append(neighbor)
+```
+
+= Dijkstra’s shortest-path algorithm
+- Shortest path between just two nodes
+
+= Prim’s minimal connecting edge set algorithm
+- Shorted path between all nodes
+
+```python
+while !allConnected:
+    connect(closest_non_connected)
+```
