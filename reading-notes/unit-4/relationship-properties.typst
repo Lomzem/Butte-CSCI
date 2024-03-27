@@ -1,0 +1,52 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+= Total Number of relations between sets X and Y:
+
+$display(
+    2^(|X| dot |Y|)
+)$
+
+= Properties of Relationships
+
+#heading(level: 2, "Reflexive")
+
+Relation $R$ is reflexive if $x$ is related to itself for every $x in A$
+
+Example: *I* "haveSeen" *myself* in the mirror
+
+#heading(level: 2, "Symmetric")
+
+$x$ R $y$ implies $y$ R $x$
+
+Example:
+
+I am the same height as him, so he #underline("must") be the same height as me
+
+#heading(level: 2, "Antisymmetric")
+
+$x$ R $y$ implies $x$ --R-- $y$
+
+Example:
+
+*I* am "tallerThan" *him*, therefore *he* #underline("cannot") be "tallerThan" *me*
+
+#heading(level: 2, "Transitivity")
+
+$x$ R $y$ and $y$ R $z$ implies $x$ R $z$
+
+Example:
+
+I am "tallerThan" Bob, Bob is "tallerThan" Jane. Therefore, I am "tallerThan" Jane
+
+= Functions
+
+#heading(level: 2, "Onto (Surjective)")
+Range equals codomain, every y in domain has at least one x
+
+#heading(level: 2, "One to One (Injective)")
+No two x's have the same y-value
+
+#heading(level: 2, "Both (Bijective)")
+
+Both onto and one to one
