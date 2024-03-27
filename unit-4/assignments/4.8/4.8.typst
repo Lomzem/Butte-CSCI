@@ -193,4 +193,70 @@ I also did this one mostly by myself. I went back to my notes to double check th
 
 #heading(level: 1, "Level 3 Strategic Thinking")
 
+#heading(level: 2, "1. Compare and Contrast Set Theory and Logic")
 
+Operations in sets are very similar to logical operators. 
+
+The union operator between sets is similar to the OR operator in that it results in a set that contains elements from either the first set OR the second set OR both sets. 
+
+The intersection operator is similar to the AND operator in that it results in a set that contains only elements found in both the first set AND the second set.
+
+The complement of a set is very similar to the NOT operator in that it gives you everything that was NOT in the original set. Since logic is closely tied to programming, this is a python example of a complement:
+
+```python
+universe = {10, 20, 30, 40, 50}
+b = {10}
+b_complement = {elem for elem in universe if elem not in b}
+```
+
+Set theory and logic are different in that logic usually deals with propositions, while set theory deals with sets.
+
+In logic, propositions could be true or false. It like you're comparing sets that only have one element that is either true or not true:
+
+#heading(level: 3, "Logic Terms")
+
+isRaining = true
+
+broughtUmbrella = false
+
+isRaining AND broughtUmbrella = false
+
+#heading(level: 3, "Set Terms")
+
+$display(
+    R = {"true"}
+    \
+    U = {}
+    \
+    R sect U = {}
+)$
+
+#heading(level: 3, "Reflection")
+
+My answers were my own without external resources. I remembered the textbook creating similarities between union and OR and intersection and AND. I expanded on it and added code examples to connect it to other things I'm learning
+ 
+#heading(level: 2, "2. Give an example of a real-world scenario where the principle of inclusion-exclusion might be applied?")
+
+You use the inclusion-exclusion principle when you don't want to double count people. For example, if you wanted to determine the amount of students majoring in either computer science or math, you couldn't just add the total number of computer science students to the total number of math students because some students double major, and you would be counting them twice. In addition to summing these two sets of students, you would have to subtract the students who are taking computer science AND math because you already counted them in one of the sets.
+
+#heading(level: 3, "Reflection")
+
+I remembered that the Cool Brisk textbook used a similar example, but I recalled and made this example from memory.
+
+= Level 4 Extended Thinking
+
+#heading(level: 2, "1. Why is set theory important to computing?")
+
+A specific aspect of computing, SQL Queries heavily rely on set theory. For example, a company may have a database of users that they partition into different sets such as {Male, Female}, {Minor, Adult}, etc.
+
+If they want to query a specific type of user such as:
+
+WHERE USER \* Gender=Male AND Age=Adult
+
+The SQL Query is finding the intersection of the "Male" set and the "Adult" set, and returning the resulting set
+
+Additionally, as stated above, set theory is very closely related to logic (union and OR) (intersection and AND), which computers rely on to make computing decisions.
+
+#heading(level: 3, "Reflection")
+
+I answered this question on my own. I couldn't immediately think of how it directly tied to computing, so I brought up SQL queries. Then, I remembered I answered how set theory and logic are closely tied, and how logic and computing are closely tied, so I tried to make that connection.
