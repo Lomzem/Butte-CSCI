@@ -1,0 +1,196 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+#show link: underline
+#show link: set text(blue)
+
+#heading(level: 1, "Level 1 Recall")
+
+#heading(level: 2, "1. Define a set and give an example of a finite set")
+
+/ set : any collection of items (nouns) in which the collection has no duplicates and is unordered; could have no items, a finite amount of items, or an infinite amount of items
+
+#heading(level: 3, "Reflection")
+
+I remembered the properties of sets both from memory of the reading and by remembering the properties of sets in python, since I've used them in python before. I forgot to include that they could be empty, finite, and infinite, and I added that to my definition after checking #link("https://en.wikipedia.org/wiki/Set_(mathematics)")[wikipedia]
+
+#heading(level: 2, "2. State the difference between a subset and a proper subset")
+
+A proper subset cannot be equal to the set it's a subset to. However, a non-proper subset could still be a subset to a set even if the subset and the set are equal.
+
+#heading(level: 3, "Reflection")
+
+I couldn't immediately recall the difference between the difference within thirty seconds, so I went to my notes that I took while reading Chapter 2 of Brisk Walk. From those notes, I identified the differences.
+
+#heading(level: 2, "3. What is a power set and how do we write it?")
+
+Given a set of elements, the power set of that set is a set that contains sets that represent all combinations of the original set, including all the elements, all combinations of the elements, and none of the elements (empty set)
+
+#heading(level: 3, "Example of Power Set")
+
+Given set:
+$display(
+    F = {"Dad, Mom"}
+)$
+
+Power set of $F$ is:
+
+$display(
+    PP(F) = {{"Dad", "Mom"}, {"Dad"}, {"Mom"}, emptyset}
+)$
+
+#heading(level: 3, "Reflection")
+
+I did remember what I wrote down for power set from memory, but I also double checked my notes for Brisk Walk just to make sure I wasn't forgetting anything. I made up the example based on the example in Brisk Walk that I remembered.
+
+#heading(level: 2, "4. What is cardinality and give an example of cardinality of an empty set and an example finite set")
+
+/ Cardinality: the size of a set, or the number of elements in a set
+
+Since an empty set by definition has no elements, it's cardinality is 0 (0 elements)
+
+For a finite set like this:
+
+$display(
+    F = {"Me, Dad, Mom"}
+)$
+
+The cardinality (surrounding the set with ||) is 3 because there are three elements in the set
+
+$display(
+    |F| = 3
+)$
+
+#heading(level: 3, "Reflection")
+
+I remembered the definition for cardinality from memory of reading Cool Brisk. I double checked my notes just to make sure the notation was correct
+
+#pagebreak()
+
+= Level 2 Skill
+
+#heading(level: 2, "1. Use set theory to answer:")
+
+#heading(level: 3, "Description:")
+
+Use set theory to answer Each student in a class of 40 plays at least one game.  18 play LOL, 20 play DOTA, and 27 play D&D.  7 play LOL and D&D, 12 play DOTA and D&D,  and 4 play all three.  Find the number of students who play LOL and DOTA and the number of students who play LOL and DOTA but not D&D.
+
+#heading(level: 3, "Work:")
+
+$display(
+    L = {k: k "is a student who plays LOL"}
+    \
+    D = {k: k "is a student who plays DOTA"}
+    \
+    A = {k: k "is a student who plays D&D"}
+    \
+    |Omega| = 40
+    \
+    |L| = 18
+    \
+    |D| = 20
+    \
+    |A| = 27
+    \
+    |L sect A| = 7
+    \
+    |D sect A| = 12
+    \
+    |L sect D sect A| = 4
+)$
+
+#heading(level: 3, "Part 1")
+Need: Number of students who play LOL and DOTA
+
+Need:
+$display(
+    |L sect D|
+)$
+
+$display(
+    |L union D union A| = |L| + |D| + |A| - |L sect D| - |D sect A| - |L sect A| + |L union D union A|
+    \
+    |L union D union A| = |Omega|
+    \
+    40 = 18 + 20 + 27 - |L sect D| - 12 - 7 + 4
+    \
+    |L sect D| = 10
+)$
+
+#heading(level: 3, "Reflection")
+
+I googled: "operations on cardinalities of sets" and got to this #link("https://www.cuemath.com/algebra/cardinality/")[page], where I learned about the inclusion-exclusion principle. It had a formula for three sets, so I plugged in my values and used algebra to find the intersection
+
+#heading(level: 3, "Part 2")
+Need: Number of students who play LOL and DOTA but not D&D
+
+Need:
+$display(
+    |L sect D sect overline(A)|
+)$
+
+Conceptually: take people who who play L and D and subtract people who play all three to get the ones who only play L and D
+
+$display(
+    |L sect D sect overline(A)| = |L sect D| - |L sect D sect A|
+    \
+    |L sect D sect overline(A)| = 10 - 4
+    \
+    |L sect D sect overline(A)| = 6
+)$
+
+#heading(level: 3, "Reflection")
+
+This one really stumped me. I had to ask #link("https://chat.openai.com/share/665ebe28-3d28-4467-a9ac-c6e212462a99")[ChatGPT], and although it got a different answer, I understood it's conceptual intention, which I explained above. I'm not confident I got the correct answers for these, so I would appreciate if you verified my answers, and if I got them wrong, provide the correct work.
+
+#heading(level: 2, "2. Use set theory to answer:")
+
+Question: Given the universal set U = {10,20, 30, 40, 50} and sets A={10, 20}, B = {20, 30}, and C={30, 40} find
+$display(
+    (A union B) sect overline(C)
+)$
+
+#heading(level: 3, "First, union of A and B")
+$display(
+    D = A union B = {10, 20, 30}
+)$
+
+#heading(level: 3, "Second, complement of C")
+$display(
+    overline(C) = U - C = {10, 20, 50}
+)$
+
+#heading(level: 3, "Finally, intersection")
+$display(
+    D sect overline(C) = (A union B) sect overline(C) = {10, 20}
+)$
+
+#heading(level: 3, "Reflection")
+
+Compared to the first question, this was much easier because we were given all of the elements of the three sets. I just broke the question down bit by bit and did it myself using what I learned about AND and OR from previous units.
+
+#heading(level: 2, "3. Determine subsets:")
+
+Given the sets P ={x|x is a prime number} and Q = {2,3,5} determine if P is a subset of Q or if Q is a subset of P and justify it.
+
+P is #underline("not") a subset of Q. For
+$display(
+    P subset Q
+)$ to be true, all elements in P must be found in Q. However, prime numbers above 5 such as 7 are not found in Q, therefore,
+
+$display(
+    P subset.not Q
+)$
+
+On the other hand, all elements of Q #underline("could") be found in P (since 2, 3, and 5 are all prime numbers and would be elements of P). Therefore,
+
+$display(
+    Q subset P
+)$
+
+#heading(level: 3, "Reflection")
+
+I also did this one mostly by myself. I went back to my notes to double check the definition for subset
+
+#heading(level: 1, "Level 3 Strategic Thinking")
+
+
