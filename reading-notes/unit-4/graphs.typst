@@ -35,6 +35,10 @@ Graphs made of:
 
 / cycle: path that begins and ends at same vertex
 
+/ tree: a graph with *no* cycles
+
+/ spanning tree: a tree that connects all nodes
+
 / DAG (directed, acyclic graph):
 - graph of dependencies
 - *directed* means other nodes part of path prior to it
@@ -121,3 +125,9 @@ def dfs(root_node):
 while !allConnected:
     connect(closest_non_connected)
 ```
+
+= Kruskal's Algorithm
+
+Steps
++ Choose edge with least weight
++ Choose least from remaining edges that will not form a cycle
