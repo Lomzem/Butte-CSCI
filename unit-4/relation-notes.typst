@@ -1,0 +1,5 @@
+#set page(fill: rgb("#26233a"))
+#set text(fill: rgb("#e0def4"))
+
+- All functions are relationships
+- Not all relationships are functions
